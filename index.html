@@ -187,15 +187,36 @@ p{margin:0 0 12px;color:var(--muted)}
 .more-btn:hover .arr{transform:translateX(3px)}
 .more-btn:active{background:linear-gradient(180deg,var(--gold-l),var(--gold) 55%,var(--gold-d));color:#0B0B0E;border-color:var(--gold);transform:scale(.97)}
 
+
+/* screenshot row: slow auto-scroll, tap to view */
+.shots.auto{scroll-snap-type:none}
+.zoom{display:block;border-radius:16px;cursor:zoom-in}
+.zoom:active img{transform:scale(.97)}
+.lb{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 12px 92px;background:#050507;opacity:0;visibility:hidden;transition:opacity .25s var(--ease),visibility .25s}
+.lb.open{opacity:1;visibility:visible}
+.lb img{max-width:min(100%,520px);max-height:100%;width:auto;height:auto;border-radius:18px;box-shadow:0 24px 60px rgba(0,0,0,.6);transform:scale(.96);transition:transform .25s var(--ease),opacity .2s}
+.lb.open img{transform:none}
+.lb button{width:46px;height:46px;flex:0 0 46px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(24,24,30,.9);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;transition:background .15s,color .15s,transform .12s var(--ease),border-color .15s}
+.lb button svg{width:20px;height:20px}
+.lb button:hover{border-color:rgba(230,190,106,.5)}
+.lb button:active{background:var(--gold);color:#0B0B0E;border-color:var(--gold);transform:scale(.93)}
+.lb-x{position:absolute;top:max(14px,env(safe-area-inset-top));right:14px}
+.lb-bar{position:absolute;left:0;right:0;bottom:max(18px,env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:center;gap:14px;padding:0 16px}
+.lb-cap{flex:0 1 260px;text-align:center;color:var(--muted);font-size:14px;line-height:1.35}
+.lb-cap b{display:block;color:var(--gold);font-size:12px;letter-spacing:.1em;margin-bottom:2px}
+body.lb-lock{overflow:hidden}
+
 /* faq */
 details{border-bottom:1px solid var(--line)}
 details:first-of-type{border-top:1px solid var(--line)}
 summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 10px;margin:0 -10px;border-radius:12px;transition:background .15s,color .15s}
 summary::-webkit-details-marker{display:none}
-summary::after{content:"+";flex:0 0 26px;height:26px;border-radius:50%;border:1px solid rgba(230,190,106,.4);color:var(--gold);font-weight:400;font-size:18px;line-height:24px;text-align:center;transition:transform .25s var(--ease),background .15s,color .15s}
+summary::after{content:"";flex:0 0 28px;width:28px;height:28px;box-sizing:border-box;border-radius:50%;border:1px solid rgba(230,190,106,.45);color:var(--gold);
+  background:linear-gradient(currentColor,currentColor) center/12px 2px no-repeat,linear-gradient(currentColor,currentColor) center/2px 12px no-repeat;
+  transition:transform .25s var(--ease),background-color .15s,color .15s,border-color .15s}
 summary:hover{background:rgba(255,255,255,.03)}
 summary:active{background:rgba(230,190,106,.10);color:var(--gold-l)}
-details[open] summary::after{transform:rotate(45deg);background:var(--gold);color:#0B0B0E}
+details[open] summary::after{transform:rotate(45deg);background-color:var(--gold);border-color:var(--gold);color:#0B0B0E}
 details p{margin:0 0 16px}
 
 /* links */
@@ -255,13 +276,13 @@ footer img{width:22px;height:22px;border-radius:6px}
 <p class="kicker">Inside the app</p>
 <h2>Screenshots</h2>
 <div class="shots">
-<figure><img src="/high-alarm-every-alarm-own-challenge.webp" alt="High Alarm alarm list: every alarm with its own wake-up challenge" width="440" height="782" loading="lazy"><figcaption>Every alarm, its own challenge</figcaption></figure>
-<figure><img src="/high-alarm-qr-code-challenge.webp" alt="High Alarm QR code, object and sink scan challenges" width="440" height="782" loading="lazy"><figcaption>Scan to stop it</figcaption></figure>
-<figure><img src="/high-alarm-never-oversleep.webp" alt="High Alarm ringing screen: never oversleep again" width="440" height="782" loading="lazy"><figcaption>Never oversleep again</figcaption></figure>
-<figure><img src="/high-alarm-math-challenge.webp" alt="High Alarm maths and say-it-aloud wake-up challenges" width="440" height="782" loading="lazy"><figcaption>Maths and Say it Aloud</figcaption></figure>
-<figure><img src="/high-alarm-morning-routine.webp" alt="High Alarm morning routine after the alarm" width="440" height="782" loading="lazy"><figcaption>Start every day with a win</figcaption></figure>
-<figure><img src="/high-alarm-sleep-recorder.webp" alt="High Alarm sleep recorder for snoring and sleep talk" width="440" height="782" loading="lazy"><figcaption>Hear what you say in your sleep</figcaption></figure>
-<figure><img src="/high-alarm-wake-up-check.webp" alt="High Alarm Wake Up Check rings again if you fall back asleep" width="440" height="782" loading="lazy"><figcaption>Fall back asleep? It rings again</figcaption></figure>
+<figure><a class="zoom" href="/high-alarm-every-alarm-own-challenge-large.webp"><img src="/high-alarm-every-alarm-own-challenge.webp" alt="High Alarm alarm list: every alarm with its own wake-up challenge" width="440" height="782" loading="lazy"></a><figcaption>Every alarm, its own challenge</figcaption></figure>
+<figure><a class="zoom" href="/high-alarm-qr-code-challenge-large.webp"><img src="/high-alarm-qr-code-challenge.webp" alt="High Alarm QR code, object and sink scan challenges" width="440" height="782" loading="lazy"></a><figcaption>Scan to stop it</figcaption></figure>
+<figure><a class="zoom" href="/high-alarm-never-oversleep-large.webp"><img src="/high-alarm-never-oversleep.webp" alt="High Alarm ringing screen: never oversleep again" width="440" height="782" loading="lazy"></a><figcaption>Never oversleep again</figcaption></figure>
+<figure><a class="zoom" href="/high-alarm-math-challenge-large.webp"><img src="/high-alarm-math-challenge.webp" alt="High Alarm maths and say-it-aloud wake-up challenges" width="440" height="782" loading="lazy"></a><figcaption>Maths and Say it Aloud</figcaption></figure>
+<figure><a class="zoom" href="/high-alarm-morning-routine-large.webp"><img src="/high-alarm-morning-routine.webp" alt="High Alarm morning routine after the alarm" width="440" height="782" loading="lazy"></a><figcaption>Start every day with a win</figcaption></figure>
+<figure><a class="zoom" href="/high-alarm-sleep-recorder-large.webp"><img src="/high-alarm-sleep-recorder.webp" alt="High Alarm sleep recorder for snoring and sleep talk" width="440" height="782" loading="lazy"></a><figcaption>Hear what you say in your sleep</figcaption></figure>
+<figure><a class="zoom" href="/high-alarm-wake-up-check-large.webp"><img src="/high-alarm-wake-up-check.webp" alt="High Alarm Wake Up Check rings again if you fall back asleep" width="440" height="782" loading="lazy"></a><figcaption>Fall back asleep? It rings again</figcaption></figure>
 </div>
 </section>
 
@@ -333,6 +354,50 @@ footer img{width:22px;height:22px;border-radius:6px}
   var els=document.querySelectorAll('main section:not(.hero) .kicker, main section:not(.hero) h2, main section:not(.hero) > p, .steps li, .card, .shots, .chips, .more-btn, details, .links li');
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{rootMargin:'0px 0px -6% 0px'});
   els.forEach(function(el,i){ el.classList.add('rv'); el.style.transitionDelay=(el.parentElement && el.parentElement.children.length>1 ? Math.min(Array.prototype.indexOf.call(el.parentElement.children,el),5)*60 : 0)+'ms'; io.observe(el); });
+})();
+</script>
+<script>
+(function(){
+  var row=document.querySelector('.shots'); if(!row) return;
+  var figs=[].slice.call(row.querySelectorAll('figure'));
+  var items=figs.map(function(f,i){ var a=f.querySelector('a'); a.setAttribute('data-i',i); return {src:a.getAttribute('href'), cap:(f.querySelector('figcaption')||{}).textContent||'', alt:f.querySelector('img').alt}; });
+  var lbOpen=false, cur=0, auto=null;
+  var ic=function(d){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+d+'</svg>';};
+  var lb=document.createElement('div'); lb.className='lb'; lb.setAttribute('role','dialog'); lb.setAttribute('aria-modal','true'); lb.setAttribute('aria-label','Screenshot');
+  lb.innerHTML='<button class="lb-x" type="button" aria-label="Close">'+ic('<path d="M6 6l12 12M18 6L6 18"/>')+'</button><img alt=""><div class="lb-bar"><button class="lb-prev" type="button" aria-label="Previous">'+ic('<path d="M15 6l-6 6 6 6"/>')+'</button><div class="lb-cap"></div><button class="lb-next" type="button" aria-label="Next">'+ic('<path d="M9 6l6 6-6 6"/>')+'</button></div>';
+  document.body.appendChild(lb);
+  var img=lb.querySelector('img'), cap=lb.querySelector('.lb-cap');
+  function show(i){ cur=(i+items.length)%items.length; img.src=items[cur].src; img.alt=items[cur].alt; cap.innerHTML='<b>'+(cur+1)+' / '+items.length+'</b>'+items[cur].cap; [cur+1,cur-1].forEach(function(j){ var p=new Image(); p.src=items[(j+items.length)%items.length].src; }); }
+  function open(i){ show(i); lbOpen=true; lb.classList.add('open'); document.body.classList.add('lb-lock'); if(auto) auto.pause(); }
+  function close(){ lbOpen=false; lb.classList.remove('open'); document.body.classList.remove('lb-lock'); if(auto) auto.resumeLater(2500); }
+  row.addEventListener('click',function(e){ var a=e.target.closest('a.zoom'); if(!a) return; e.preventDefault(); open(+a.getAttribute('data-i')); });
+  lb.querySelector('.lb-x').addEventListener('click',close);
+  lb.querySelector('.lb-prev').addEventListener('click',function(){show(cur-1);});
+  lb.querySelector('.lb-next').addEventListener('click',function(){show(cur+1);});
+  lb.addEventListener('click',function(e){ if(e.target===lb) close(); });
+  document.addEventListener('keydown',function(e){ if(!lbOpen) return; if(e.key==='Escape') close(); else if(e.key==='ArrowLeft') show(cur-1); else if(e.key==='ArrowRight') show(cur+1); });
+  var sx=null; lb.addEventListener('touchstart',function(e){ sx=e.touches[0].clientX; },{passive:true});
+  lb.addEventListener('touchend',function(e){ if(sx===null) return; var dx=e.changedTouches[0].clientX-sx; sx=null; if(Math.abs(dx)>45){ show(dx<0?cur+1:cur-1); } },{passive:true});
+
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  figs.forEach(function(f){ var c=f.cloneNode(true); c.setAttribute('aria-hidden','true'); var a=c.querySelector('a'); a.tabIndex=-1; c.querySelector('img').alt=''; row.appendChild(c); });
+  row.classList.add('auto');
+  var pos=0, last=0, paused=false, visible=true, t=null, speed=30;
+  function loopW(){ return row.children[figs.length].offsetLeft - row.children[0].offsetLeft; }
+  function norm(){ var W=loopW(); if(W>0){ while(pos>=W) pos-=W; while(pos<0) pos+=W; } }
+  auto={ pause:function(){ paused=true; clearTimeout(t); },
+         resumeLater:function(ms){ clearTimeout(t); t=setTimeout(function(){ if(lbOpen) return; pos=row.scrollLeft; norm(); row.scrollLeft=pos; paused=false; last=0; }, ms); } };
+  function step(now){ if(!last) last=now; var dt=Math.min(50,now-last); last=now;
+    if(!paused && visible && !lbOpen && !document.hidden){ pos+=speed*dt/1000; norm(); row.scrollLeft=pos; }
+    requestAnimationFrame(step); }
+  row.addEventListener('touchstart',function(){ auto.pause(); },{passive:true});
+  row.addEventListener('touchend',function(){ auto.resumeLater(4000); },{passive:true});
+  row.addEventListener('pointerdown',function(e){ if(e.pointerType==='mouse') auto.pause(); });
+  row.addEventListener('wheel',function(){ auto.pause(); auto.resumeLater(4000); },{passive:true});
+  row.addEventListener('mouseenter',function(){ auto.pause(); });
+  row.addEventListener('mouseleave',function(){ auto.resumeLater(900); });
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ visible=es[0].isIntersecting; }).observe(row); }
+  requestAnimationFrame(step);
 })();
 </script>
 </body>
