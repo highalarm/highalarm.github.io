@@ -330,7 +330,7 @@ footer img{width:22px;height:22px;border-radius:6px}
   function onScroll(){ if(top){ top.classList.toggle('scrolled', window.scrollY>4); } }
   window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
   if(!('IntersectionObserver' in window)) return;
-  var els=document.querySelectorAll('main section:not(.hero) .kicker, main section:not(.hero) h2, main section:not(.hero) > p, .steps li, .card, .shots figure, .chips, .more-btn, details, .links li');
+  var els=document.querySelectorAll('main section:not(.hero) .kicker, main section:not(.hero) h2, main section:not(.hero) > p, .steps li, .card, .shots, .chips, .more-btn, details, .links li');
   var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{rootMargin:'0px 0px -6% 0px'});
   els.forEach(function(el,i){ el.classList.add('rv'); el.style.transitionDelay=(el.parentElement && el.parentElement.children.length>1 ? Math.min(Array.prototype.indexOf.call(el.parentElement.children,el),5)*60 : 0)+'ms'; io.observe(el); });
 })();
